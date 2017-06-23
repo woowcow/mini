@@ -1,5 +1,5 @@
 /*
- 
+
   VCC接5V,GND接地,SDA接A4,SCL接A5
   喇叭+ PIN8，喇叭- GND
 
@@ -13,29 +13,30 @@
   --- buzzer ---
   buzzer+ -> D8
   buzzer- -> GND
-  
+
+  Design by 牛圈
+  http://www.woowcow.com
+
 */
 
 #include <Wire.h>
 #include "pitches.h"
-#include "wdt.h"  //Watchdog
+//#include "wdt.h"  //Watchdog
 
 int BH1750_address = 0x23; // i2c Addresse
 byte buff[2];
 int maxvalue = 0;
 int temp = 0;
 int ledPin = 13;
-//-----------聲音
-int melody[] = {
-  NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6
-};
-int duration = 500;  // 500 miliseconds
 
+//-----------Buzzer sound
+int melody[] = {NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6};
+int duration = 500;  // 500 miliseconds
 int count0, count1, count2, count3, count4;
-//----------------
+//-----------Buzzer sound END
 
 void setup() {
-  wdt_enable (WDTO_8S);   //Watchdog 8S
+//  wdt_enable (WDTO_8S);   //Watchdog set 8 second
 
   pinMode(ledPin, OUTPUT);
 
@@ -44,23 +45,29 @@ void setup() {
 
   delay(200);
   Serial.begin(9600);
-  Serial.println("Earthquake program - Fluorescent lamp");
+  Serial.println("Earthquake program - http://www.woowcow.com");
 }
 
 void loop() {
-  wdt_reset ();   //Watchdog
+//  wdt_reset ();   //Watchdog
 
   float valf = 0;
 
   if (BH1750_Read(BH1750_address) == 2) {
 
+    //Output lux values
     valf = ((buff[0] << 8) | buff[1]) / 1.2;
-
     if (valf < 0)Serial.print("> 65535");
     else Serial.print((int)valf, DEC);
+    Serial.println(" lux");
+    //Output lux values END
 
-    Serial.println(" lx");
-
+    //Output BH1750 Sensing values
+    Serial.print("BH1750:\t");
+    Serial.print((buff[0] << 8) + buff[1], DEC);
+    Serial.print("\n");
+    valf = ((buff[0] << 8) + buff[1]);
+    //Output BH1750 Sensing values END
 
   }
   digitalWrite(ledPin, HIGH);
@@ -89,20 +96,17 @@ void loop() {
     count2 = maxvalue % 100 / 10;
     count3 = maxvalue % 1000 / 100;
     count4 = maxvalue % 10000 / 1000;
-    //    Serial.println(count4);
-    //    Serial.println(count3);
-    //    Serial.println(count2);
-    //    Serial.println(count1);
+
     if (maxvalue > 0) {
       if (count4 > 0) {
-        for (int count = 0; count < count4; count++)    //喇叭輸出千位數
+        for (int count = 0; count < count4; count++)    //喇叭輸出千位數 Output Thousands number
         {
           sound();
         }
         delay(300);
       }
 
-      if (count3 > 0 || count4 > 0)   //喇叭輸出百位數
+      if (count3 > 0 || count4 > 0)   //喇叭輸出百位數 Output Hundred number
       {
         for (int count = 0; count < count3; count++)
         {
@@ -115,7 +119,7 @@ void loop() {
         delay(300);
       }
 
-      if (count2 > 0 || count3 > 0 || count4 > 0)   //喇叭輸出十位數
+      if (count2 > 0 || count3 > 0 || count4 > 0)   //喇叭輸出十位數 Output Ten number
       {
         for (int count = 0; count < count2; count++)
         {
@@ -128,7 +132,7 @@ void loop() {
         delay(300);
       }
 
-      for (int count = 0; count < count1; count++)    //喇叭輸出個位數
+      for (int count = 0; count < count1; count++)    //喇叭輸出個位數 Output number
       {
         sound();
       }
@@ -172,16 +176,16 @@ void sound(void)
   delay(100);
   tone(8, melody[10000], duration);
   delay(100);
-  wdt_reset ();   //Watchdog
+//  wdt_reset ();   //Watchdog
 }
 
 void zero(void)
 {
-  for (int count = 0; count < 10; count++)
-  {
-    tone(8, melody[0], duration);
-    delay(100);
-    tone(8, melody[10000], duration);
-    delay(100);
-  }
+//  for (int count = 0; count < 10; count++)
+//  {
+//    tone(8, melody[0], duration);
+//    delay(100);
+//    tone(8, melody[10000], duration);
+//    delay(100);
+//  }
 }
