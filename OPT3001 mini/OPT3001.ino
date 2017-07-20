@@ -1,11 +1,12 @@
 /*
   OPT3001_Demo Example
-  VCC接5V,GND接地,SDA接A4,SCL接A5
+  VCC接3.3V,GND接地,SDA接A4,SCL接A5
   喇叭+ PIN8，喇叭- GND
 
-  --- GY-30 ---
+
+  --- OPT3001 ---
   GY-30 -> Arduino
-  VCC -> 5V
+  VCC -> 3.3V
   GND -> GND
   SDA -> A4
   SCL -> A5
