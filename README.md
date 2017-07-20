@@ -6,6 +6,7 @@
  * [mini → 簡易版 (HB1750I)](https://github.com/woowcow/mini/tree/master/mini)
  * [mini with watchdog → 包含watchdog版 (HB1750I)](https://github.com/woowcow/mini/tree/master/mini%20with%20watchdog)
  * [OPT3001 mini → 簡易版 (OPT3001)](https://github.com/woowcow/mini/tree/master/OPT3001%20mini)
+ * [OPT3001 mini with watchdog](https://github.com/woowcow/mini/tree/master/OPT3001%20mini%20with%20watchdog)
 
 關於牛圈
 在1976年唐山地震，1995年阪神大地震1999年台灣集集大地震(921)發生前不少人家中日光燈在關閉狀況下仍然持續發亮。 地震前空氣中會出現大量電磁異常，會使空氣中電子互相撞擊，互相撞擊時會使日光燈內水銀蒸汽放出紫外線使管內螢光漆發光，產生可見光。此現象發生在震度較大時（約震央規模6.0以上），過小或過遠則無發光反應。
