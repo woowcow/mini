@@ -22,7 +22,7 @@
 [https://www.youtube.com/watch?v=3yWv7hhuF1Y](https://www.youtube.com/watch?v=3yWv7hhuF1Y)
 
 
-預計更新事項：
+# 預計更新事項：
 
  * 建置人工回報系統，蒐集亮度資料建立亮度跟地震發生相關數值，用來預報可能發生地震規模大小之使用。
  * 連接網路自動回報相關數據。
