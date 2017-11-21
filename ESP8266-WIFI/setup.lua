@@ -1,0 +1,8 @@
+pwd = ""
+apikey = ""
+ap = "on"
+live = "on"
+url = "49.213.156.164"
+ssid = ""
+apname = ""
+appwd = ""
